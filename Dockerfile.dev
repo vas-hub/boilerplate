@@ -1,0 +1,16 @@
+FROM node:14.16.0 as base
+RUN mkdir /opt/appName && chown -R node:node /opt/appName
+WORKDIR /opt/appName
+COPY . .
+
+FROM base as web
+ENV NODE_ENV=development
+ENV ENV=development
+RUN yarn
+CMD ["yarn", "web:dev"]
+
+FROM base as api
+ENV NODE_ENV=development
+ENV ENV=development
+RUN yarn
+CMD ["yarn", "api:dev"]

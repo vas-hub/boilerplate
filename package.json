@@ -1,0 +1,29 @@
+{
+  "name": "appName",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "lerna run --parallel dev",
+    "compile:watch": "lerna run compile --stream -- --watch",
+    "compile": "lerna run compile",
+    "build": "lerna run build",
+    "build:staging": "lerna run build:staging",
+    "build:production": "lerna run build:production",
+    "bootstrap": "lerna bootstrap",
+    "cleanup": "lerna exec rimraf node_modules yarn.lock",
+    "web:dev": "lerna exec \"yarn dev\" --scope=\"web\"",
+    "api:dev": "lerna exec \"yarn dev\" --scope=\"api\""
+  },
+  "dependencies": {
+    "typescript": "~4.2.0",
+    "ts-node": "^9.1.1",
+    "env-cmd": "^10.1.0",
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
+    "lerna": "~4.0.0"
+  }
+}

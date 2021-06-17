@@ -1,0 +1,8 @@
+{
+  "watch": ["src", "../../packages/**/src/*"],
+  "ext": "ts",
+  "delay": 2,
+  "ignoreRoot": [".git"],
+  "ignore": ["src/**/*.spec.ts"],
+  "exec": "ts-node -r tsconfig-paths/register src/main.ts"
+}

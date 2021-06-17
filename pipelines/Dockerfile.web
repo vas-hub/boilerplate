@@ -1,0 +1,28 @@
+FROM node:12-alpine
+
+ENV PORT 3000
+ENV NODE_ENV=production
+
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# Copying source files
+COPY apps/web .
+COPY packages/ packages/
+
+# Installing dependencies
+COPY .npmrc .
+COPY yarn.lock .
+
+COPY node_modules node_modules
+
+# configure runtime
+
+RUN addgroup -g 1001 -S wapp
+RUN adduser -S wapp -u 1001
+RUN chown -R wapp:wapp .*
+USER wapp
+
+ENTRYPOINT ["yarn", "start-with-env"]
+EXPOSE 3000

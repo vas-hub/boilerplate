@@ -1,0 +1,36 @@
+{
+  "name": "@appName/core",
+  "version": "1.0.0",
+  "main": "dist/index",
+  "types": "dist/index",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "yarn run clean && yarn run compile",
+    "clean": "rimraf -rf ./dist",
+    "compile": "tsc -p tsconfig.build.json",
+    "build:watch": "tsc -p tsconfig.build.json -w --preserveWatchOutput",
+    "dev": "npm run build:watch",
+    "start:dev": "npm run build:watch",
+    "prepublishOnly": "yarn run build",
+    "test": "yarn jest"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.168",
+    "@types/jest": "^26.0.23",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "rimraf": "~3.0.2",
+    "ts-jest": "^26.5.5",    
+    "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "~4.2.0"
+  },
+  "dependencies": {
+    "class-transformer": "^0.4.0",
+    "immutable": "^4.0.0-rc.12",
+    "lodash": "^4.17.21",
+    "simple-statistics": "^7.7.0"
+  }
+}

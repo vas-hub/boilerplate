@@ -1,0 +1,57 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+      target: api
+    volumes:
+      - .:/opt/appName
+      - tmp:/opt/appName/tmp
+      - node_modules_cache:/opt/appName/node_modules/.cache
+      - dist:/opt/appName/dist
+    depends_on:
+      - mongodb
+    restart: always
+    ports:
+      - '3001:3001'
+    environment:
+      ENV: development
+      MONGODB_URI: mongodb://mongodb:27017/appName
+
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+      target: web
+    volumes:
+      - .:/opt/appName
+      - tmp:/opt/appName/tmp
+      - node_modules_cache:/opt/appName/node_modules/.cache
+      - dist:/opt/appName/dist
+    restart: always
+    ports:
+      - '3000:3000'
+
+  mongodb:
+    image: mongo
+    restart: always
+    ports:
+      - '27018:27017'
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
+  dist:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+  node_modules_cache:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+  tmp:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs  

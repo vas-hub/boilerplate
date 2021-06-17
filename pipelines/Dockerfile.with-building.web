@@ -1,0 +1,33 @@
+FROM node:14-alpine
+
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+COPY package.json .
+COPY lerna.json .
+COPY tsconfig.json .
+COPY tsconfig.base.json .
+
+COPY apps/web ./apps/web
+COPY packages/foo ./packages/foo
+
+RUN yarn install
+
+
+# WORKDIR /usr/src/app/apps/api
+
+# WORKDIR /usr/src/app
+# RUN yarn bootstrap
+
+ENV NODE_ENV=production
+
+RUN yarn build
+
+WORKDIR /usr/src/app/apps/web
+
+EXPOSE 3000
+
+# RUN cp src/.env.* dist/src
+
+CMD ["yarn", "start-with-env"]

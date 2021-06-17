@@ -1,0 +1,13 @@
+{
+  "cSpell.words": [
+    "ELTIF",
+    "Luxottica",
+    "SICAF",
+    "SICAV",
+    "UCTIS",
+    "datepicker",
+    "appName",
+    "kpis"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
