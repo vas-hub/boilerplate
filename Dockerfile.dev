@@ -1,4 +1,4 @@
-FROM node:14.16.0 as base
+FROM node:16 as base
 RUN mkdir /opt/appName && chown -R node:node /opt/appName
 WORKDIR /opt/appName
 COPY . .
