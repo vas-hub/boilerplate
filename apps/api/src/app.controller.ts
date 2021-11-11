@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ConfigService } from '@nestjs/config';
-import { TEST_VARIABLE } from '@appName/core/dist/test';
+import { TEST_VARIABLE } from '@appName/core';
 
 @Controller()
 export class AppController {

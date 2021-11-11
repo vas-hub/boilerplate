@@ -1,4 +1,4 @@
-import { TEST_VARIABLE } from '@appName/core/dist/test';
+import { TEST_VARIABLE } from '@appName/core';
 
 const DebugPage = () => <div>{TEST_VARIABLE}</div>;
 
