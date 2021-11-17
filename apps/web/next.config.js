@@ -5,7 +5,8 @@ module.exports = {
     
     // Let Babel compile outside of src/.
     for (const rule of oneOfRules) {
-       if (!rule.text || !rule.test.toString().includes('tsx|ts')) continue;
+      if (!rule.test || !rule.test.toString().includes('tsx|ts')) continue;
+
 
       rule.include = undefined;
       rule.exclude = /node_modules/;
