@@ -13,7 +13,7 @@ dockerfiles:
   dockerfile: 'pipelines/Dockerfile.api'
   context: .
 - name: appName-web
-  dockerfile: 'pipelines/Dockerfile.web'
+  dockerfile: 'pipelines/Dockerfile.standalone.web'
   context: .
 
 ####

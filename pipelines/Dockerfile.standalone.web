@@ -1,0 +1,26 @@
+FROM node:16-alpine
+
+ENV PORT 3000
+ENV NODE_ENV=production
+
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# You only need to copy next.config.js if you are NOT using the default configuration
+COPY apps/web/next.config.js ./
+COPY apps/web/public ./public
+
+# Automatically leverage output traces to reduce image size 
+# https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --chown=nextjs:nodejs apps/web/.next/standalone ./
+# we need to this because somehow outputStandalone mode copies package.json from the root of the project
+COPY apps/web/package.json ./package.json
+COPY apps/web/start.sh ./start.sh
+COPY --chown=nextjs:nodejs apps/web/.next/static ./.next/static
+
+ENTRYPOINT ["node", "apps/web/server.js"]
+EXPOSE 3000
